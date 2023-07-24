@@ -59,15 +59,20 @@ function Show-ProgressBar {
 
     $progressBar = "$([char]::ConvertFromUtf32($leftFillBracket))"
 
-    for ($i = 1; $i -le $filledWidth; $i++) {
+    for ($i = 1; $i -le $filledWidth; $i++) { # le is less than or equal to
         $progressBar += "$([char]::ConvertFromUtf32($filledBlock))"
     }
 
-    for ($i = 1; $i -le $emptyWidth; $i++) {
+    for ($i = 1; $i -le $emptyWidth; $i++) { 
         $progressBar += "$([char]::ConvertFromUtf32($emptyBlock))"
     }
 
-    $progressBar += "$([char]::ConvertFromUtf32($rightFillBracket))"
+    if ($percentage -eq 100) {
+        $progressBar += "$([char]::ConvertFromUtf32($rightFillBracket))"
+    }
+    if ($percentage -lt 100) {
+        $progressBar += "$([char]::ConvertFromUtf32($rightBracket))"
+    }
     $progressBar += " $percentage%"
 
     Write-Host $progressBar -NoNewline
@@ -81,4 +86,5 @@ for ($i = 1; $i -le $totalItems; $i++) {
     Write-Host "`r" -NoNewline
 }
 
+Write-Host ""
 Write-Host "Done!" -ForegroundColor Green -NoNewline
