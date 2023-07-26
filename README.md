@@ -117,7 +117,9 @@ Podemos também iniciar com o powershell com um título específico
 wt --fullscreen Powershell.exe -NoLogo -NoExit -Command "$host.UI.RawUI.WindowTitle = 'Jarbas'"
 ```
 
-## Multiplos Terminais
+## Comandos de Teclado com o Windows Terminal
+
+
 
 ## Emojis no Windows Terminal
 
